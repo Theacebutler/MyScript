@@ -1,0 +1,47 @@
+#! /usr/bin/env python3
+# extend
+
+
+from sys import argv
+from os import path, getcwd
+import subprocess
+
+def main(): 
+    # look for no user input
+    if len(argv) < 2:
+        return print(f'\nUsage:\n {path.basename(__file__)} [ name of the template ]')
+
+    if not argv[1].endswith('.html'): 
+        name = argv[1] + '.html'
+    else:
+        name = argv[1]
+
+    # check if file alredy exists
+    if path.exists(f'{name}'):
+        print(f'Note: File named "{name}" alredy exists, opening...')
+        open_new_file(name)
+        return
+    
+    # create the file
+    with open(f'{name}', 'w') as new:
+        new.write('{% extends "layout.html" %}\n{% block body %}\n\n\n{% endblock %}')
+        
+    print('Impotant!!! This file extends a file named "layout.html", make sure:\n\tA. it exists\n\tB. the name ("layout.html") match\'s\n\tC. the block is named "block body"!')
+    open_new_file(name)
+    return
+
+#  open the file in the editor
+def open_new_file(new_file_name):
+
+    # 'code' might not work in you'r os. chang it to the cmd you use the open a file
+    cmd = ['code', new_file_name]
+    try:
+        subprocess.run(cmd, shell=True)
+    except FileNotFoundError:
+        return print(f'Error: The File {new_file_name} dose not exist \n Try fixing the code at {__file__}')
+    except Exception as e:
+        return print(f'Error: {e} \n Try fixing the code at {__file__}')
+    return 
+
+if __name__ == '__main__':
+    main()
