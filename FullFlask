@@ -6,7 +6,7 @@ from sys import argv
 
 def main():
     if len(argv) != 2:
-        return print('\nUsage:\n  MF.py [Name of new folder]')
+        return print(f'\nUsage:\n {path.basename(__file__)}  [Name of new folder]')
 
     # make a parent dir for the whole project
     makedirs(argv[1], exist_ok=True)
