@@ -3,7 +3,7 @@
 
 
 from sys import argv
-from os import path, getcwd
+from os import path
 import subprocess
 
 def main(): 

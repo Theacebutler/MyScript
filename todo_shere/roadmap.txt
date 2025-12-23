@@ -1,0 +1,4 @@
+A make a backend to store all the todos = useing fastapi
+B make a bash script to accsses it from the terminal
+C make an apple shortcut to accsses it from the terminal
+D maybe: make a simple front end

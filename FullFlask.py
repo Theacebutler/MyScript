@@ -1,12 +1,11 @@
 #! /usr/bin/env python3
 # FullFlask.py
-
 from os import makedirs, chdir, getcwd, path
 from sys import argv
 
 def main():
     if len(argv) != 2:
-        return print(f'\nUsage:\n {path.basename(__file__)}  [Name of new folder]')
+        return print('\nUsage:\n  MF.py [Name of new folder]')
 
     # make a parent dir for the whole project
     makedirs(argv[1], exist_ok=True)
@@ -14,7 +13,9 @@ def main():
     # in thet dir 
         # create a file file named 'run.py'
     with open('run.py', 'w') as run:
-        run.write('''from app import app\n\n\nif __name__ == "__main__":\n\tapp.run(debug=True)''')
+        run.write('''from app import app \n\n\n
+                    if __name__ == "__main__": \n
+                        app.run(debug=True)''')
         # create a requirements.txt file for pip install
     with open('requirements.txt', 'w') as req:
         req.write('flask')
