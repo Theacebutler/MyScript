@@ -1,0 +1,21 @@
+#! /usr/bin/env bash
+
+if [ "$#" -eq 0 ]; then
+  echo "Usage: flask_base [ Project name ]"
+  exit 1
+fi
+
+parent_dir=$1
+echo $parent_dir
+mkdir -p $parent_dir
+cd $parent_dir/
+echo "from app import app\n\nif __name__ == '__main__'\n\tapp.run(debug=True)" >run.py
+echo "flask" >requirements.txt
+
+mkdir -p app/templates app/static
+cd app
+touch templates/layout.html templates/index.html
+echo "{% extends 'layout.html' %}" >templates/layout.html
+echo "{% block body %}" >>templates/layout.html
+echo "" >>templates/layout.html
+echo "{% endblock body %}" >>templates/layout.html
